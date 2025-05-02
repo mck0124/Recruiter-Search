@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}회신자 목록{% endblock %}
+{% block content %}
+
+<div class="container" style="max-width: 900px;">
+  <h2 class="mb-4 text-center" style="color: #2dc997; font-weight: bold;">회신한 후보자 목록</h2>
+
+  {% for reply in replied_candidates %}
+  <div class="candidate-card d-flex align-items-center p-3 mb-3">
+    <img src="{{ reply.avatar_url }}" alt="avatar" style="border-radius: 50%; width: 60px; height: 60px; margin-right: 1rem;">
+    <div class="flex-grow-1">
+      <h5 class="mb-1" style="font-weight: bold; color: #333;">{{ reply.username }}</h5>
+      <p class="mb-0" style="font-size: 0.9rem; color: #555;">Email: {{ reply.email }} | Location: {{ reply.location }} | Languages: {{ reply.languages }}</p>
+      <p class="mb-0" style="font-size: 0.9rem; color: #555;">Score: {{ reply.score }}</p>
+    </div>
+    <a href="{{ reply.profile_url }}" target="_blank" class="btn btn-outline-dark btn-sm" title="GitHub 프로필">
+      <i class="bi bi-github fs-4"></i>
+    </a>
+  </div>
+  {% endfor %}
+
+  {% if not replied_candidates %}
+    <p class="text-center">회신한 후보자가 없습니다.</p>
+  {% endif %}
+</div>
+
+{% endblock %}
