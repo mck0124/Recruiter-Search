@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}과거 진행 내역{% endblock %}
+{% block content %}
+
+<div class="container" style="max-width: 900px;">
+  <h2 class="mb-4 text-center" style="color: #2dc997; font-weight: bold;">과거 진행 내역</h2>
+
+  {% for record in past_records %}
+  <div class="candidate-card d-flex align-items-center p-3 mb-3">
+    <div class="flex-grow-1">
+      <h5 class="mb-1" style="font-weight: bold; color: #333;">채용명: {{ record.title }}</h5>
+      <p class="mb-0" style="font-size: 0.9rem; color: #555;">완료일: {{ record.completed_date }}</p>
+      <p class="mb-0" style="font-size: 0.9rem; color: #555;">채용 인원: {{ record.hired_count }}명</p>
+      <p class="mb-0" style="font-size: 0.9rem; color: #555;">요구 기술: {{ record.required_skills }}</p>
+    </div>
+    <a href="/past-detail/{{ record.id }}" class="btn btn-outline-primary btn-sm" title="세부 정보 보기">
+      상세보기
+    </a>
+  </div>
+  {% endfor %}
+
+  {% if not past_records %}
+    <p class="text-center">과거 진행된 채용 내역이 없습니다.</p>
+  {% endif %}
+</div>
+
+{% endblock %}
