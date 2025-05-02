@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}대시보드{% endblock %}
+{% block content %}
+<div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem; width: 100%; max-width: 800px;">
+  <div class="card p-4" style="border: none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); background: white;">
+    <h5 class="card-title" style="color: #2dc997; font-weight: bold;">진행중인 채용</h5>
+    <p>현재 3명의 후보자에게 메일 발송 완료, 1명이 회신했습니다.</p>
+  </div>
+  <div class="card p-4" style="border: none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); background: white;">
+    <h5 class="card-title" style="color: #2dc997; font-weight: bold;">면접 예정자</h5>
+    <p>2명의 후보자가 AI 면접을 준비 중입니다.</p>
+  </div>
+  <div class="card p-4" style="border: none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); background: white;">
+    <h5 class="card-title" style="color: #2dc997; font-weight: bold;">과거 진행 내역</h5>
+    <p>지난 6개월 동안 5건의 채용 완료 기록이 있습니다.</p>
+  </div>
+</div>
+{% endblock %}
+
+<style>
+  .sidebar a:hover {
+    background-color: rgba(45, 201, 151, 0.3); /* 연한 초록 호버 */
+    color: #2dc997;
+  }
+</style>
