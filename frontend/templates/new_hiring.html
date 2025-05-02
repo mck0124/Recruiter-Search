@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}새 채용 시작{% endblock %}
+{% block content %}
+<div class="container" style="max-width: 700px; margin: auto; background: rgba(255, 255, 255, 0.95); padding: 2rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+  <form method="POST" action="/filter-candidates">
+    <!-- 언어 선택 -->
+    <div class="mb-5">
+      <h2 class="text-center" style="color:#2dc997; font-weight: bold;">원하는 언어를 선택하세요</h2>
+      <div class="d-flex flex-wrap justify-content-center gap-2 mt-3">
+        {% for lang in ['Python', 'JavaScript', 'Java', 'C++', 'Go', 'Ruby', 'Kotlin', 'TypeScript'] %}
+          <input type="checkbox" class="btn-check" id="lang-{{ lang }}" name="languages" value="{{ lang }}">
+          <label class="btn btn-outline-success rounded-pill px-4" for="lang-{{ lang }}">{{ lang }}</label>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- 지역 선택 -->
+    <div class="mb-5">
+      <h2 class="text-center" style="color:#2dc997; font-weight: bold;">원하는 지역을 선택하세요</h2>
+      <div class="d-flex flex-wrap justify-content-center gap-2 mt-3">
+        {% for region in ['서울','인천','경기','부산','대구','광주','대전','세종','울산','강원','충북','충남','전북','전남','경북','경남','제주'] %}
+          <input type="checkbox" class="btn-check" id="region-{{ region }}" name="regions" value="{{ region }}">
+          <label class="btn btn-outline-success rounded-pill px-4" for="region-{{ region }}">{{ region }}</label>
+        {% endfor %}
+      </div>
+      <div class="form-check text-center mt-2">
+        <input class="form-check-input" type="checkbox" id="no-region" name="all_region" value="all">
+        <label class="form-check-label" for="no-region">지역 상관없음 (전국)</label>
+      </div>
+    </div>
+
+    <!-- 연봉 선택 -->
+    <div class="mb-5">
+      <h2 class="text-center" style="color:#2dc997; font-weight: bold;">예상 연봉 수준은?</h2>
+      <label class="form-label text-center d-block">연봉: <span id="salary-value">5000</span>만원</label>
+      <input type="range" class="form-range" id="salary" name="salary" min="2000" max="15000" value="5000" step="500" oninput="document.getElementById('salary-value').innerText = this.value">
+    </div>
+
+    <!-- 인원 선택 -->
+    <div class="mb-5">
+      <h2 class="text-center" style="color:#2dc997; font-weight: bold;">채용 인원 규모는?</h2>
+      <label class="form-label text-center d-block">전체 인원: <span id="total-count-value">5</span>명</label>
+      <input type="range" class="form-range" id="total-count" name="total_count" min="1" max="50" value="5" step="1" oninput="document.getElementById('total-count-value').innerText = this.value">
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-success px-5 py-2 fs-5 rounded-pill shadow">필터링 적용</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
